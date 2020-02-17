@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bashio
 # ==============================================================================
-# SDeSalve Hass.io Add-ons: VoIP Notifier for HomeAssistant
+# SDeSalve Hass.io Add-ons: VoIP Notifier for HomeAssistant (moddded by jr_wyx)
 # Runs the Plex Media Server
 # ==============================================================================
 
@@ -11,7 +11,7 @@ rm -f /share/dss_voip/dss_*
 chmod -R 770 /share/dss_voip
 
 CONFIG_PATH=/data/options.json
-bashio::log.green "[Info] Starting addon..."
+bashio::log.green "[Info] Starting addon (MOD Jr v.1)..."
 
 # Generate pjsua.conf
 SIP_PARAMETERS=$(bashio::config 'sip_parameters | length')
