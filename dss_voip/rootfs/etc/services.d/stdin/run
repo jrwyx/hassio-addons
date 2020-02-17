@@ -301,7 +301,8 @@ while read -r msg; do
             bashio::log.green "Audio succesfully converted..."
             bashio::log.green "Starting SIP Client and calling '$CALL_SIP_URI_VALUE'..."
             
-            ( sleep 10; echo m; sleep 0.5; echo 1 ) | ( pjsua --config-file '/share/dss_voip/dss_pjsua.conf' 2> /share/dss_voip/dss_pjsua.log )
+            ( pjsua --config-file '/share/dss_voip/dss_pjsua.conf' 2> /share/dss_voip/dss_pjsua.log )
+            # ( sleep 10; echo m; sleep 0.5; echo 1 ) | 
             if [ $? -eq 0 ]; then
                bashio::log.green "[Info] SIP Registered..."
             else
