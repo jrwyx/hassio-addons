@@ -29,18 +29,18 @@ ARG BUILD_VERSION
 
 # Labels
 LABEL \
-    io.hass.name="DSS VoIP Notifier" \
-    io.hass.description="VoIP Notifier for HomeAssistant" \
+    io.hass.name="DSS VoIP Notifier (ModByJr)" \
+    io.hass.description="VoIP Notifier for HomeAssistant (ModByJr)" \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="SDeSalve <me@sdesalve.it>" \
-    org.label-schema.description="VoIP Notifier for HomeAssistant" \
+    maintainer="SDeSalve <me@nomail.com>" \
+    org.label-schema.description="VoIP Notifier for HomeAssistant (ModByJr)" \
     org.label-schema.build-date=${BUILD_DATE} \
-    org.label-schema.name="Addon VoIP for ${BUILD_ARCH}" \
+    org.label-schema.name="Addon VoIP for ${BUILD_ARCH} (ModByJr)" \
     org.label-schema.schema-version="3.1.5" \
-    org.label-schema.url="https://sdesalve.it" \
-    org.label-schema.usage="https://github.com/sdesalve/hassio-addons/dss_voip/README.md" \
+    org.label-schema.url="https://noweb.com" \
+    org.label-schema.usage="https://github.com/jr_wyx/hassio-addons/dss_voip/README.md" \
     org.label-schema.vcs-ref=${BUILD_REF} \
-    org.label-schema.vcs-url="https://github.com/sdesalve/hassio-addons/dss_voip" \
-    org.label-schema.vendor="SDeSalve"
+    org.label-schema.vcs-url="https://github.com/jr_wyx/hassio-addons/dss_voip" \
+    org.label-schema.vendor="SDeSalve (ModByJr)"
