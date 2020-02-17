@@ -21,6 +21,7 @@ if [ "$SIP_PARAMETERS" -gt "0" ]; then
    echo "--null-audio"                                      > /share/dss_voip/dss_pjsua.conf
    echo "--auto-play"                                      >> /share/dss_voip/dss_pjsua.conf
    echo "--play-file /share/dss_voip/dss_message_tts.wav"  >> /share/dss_voip/dss_pjsua.conf
+   echo "--app-log-level 3"                                >> /share/dss_voip/dss_pjsua.conf
 
    SIP_SERVER_URI=$(bashio::config 'sip_parameters.sip_server_uri | length')
    CALLER_ID_URI=$(bashio::config 'sip_parameters.caller_id_uri | length')
@@ -191,7 +192,7 @@ bashio::log.green "[Info] Listening for messages via stdin service call..."
 
 # shellcheck disable=SC2162
 while read -r msg; do
-   rm -f /share/dss_voip/dss_message_tts.*
+   # rm -f /share/dss_voip/dss_message_tts.*
    MAKECALL="1"
    # parse JSON
    bashio::log.green "[Info] Received messages ${msg}"
@@ -202,6 +203,8 @@ while read -r msg; do
       CALL_SIP_URI_VALUE="$(echo "$msg" | jq --raw-output '.call_sip_uri')"
       # bashio::log.info '[Debug] CALL_SIP_URI_VALUE = '$CALL_SIP_URI_VALUE 
       echo "CALL_SIP_URI_VALUE = '$CALL_SIP_URI_VALUE'"    >> /share/dss_voip/dss_pjsua.log
+      echo "--add-buddy '$CALL_SIP_URI_VALUE'"             >> /share/dss_voip/dss_pjsua.conf
+      
    else
       MAKECALL="0"
       bashio::log.red \
@@ -297,8 +300,9 @@ while read -r msg; do
          if [ $? -eq 0 ]; then
             bashio::log.green "Audio succesfully converted..."
             bashio::log.green "Starting SIP Client and calling '$CALL_SIP_URI_VALUE'..."
+            
+            ( sleep $MAX_CALL_TIME_VALUE; echo h; sleep 0.5; echo q ) | ( sleep 10; echo m; sleep 0.5; echo 1 ) | ( pjsua --config-file '/share/dss_voip/dss_pjsua.conf' 2> /share/dss_voip/dss_pjsua.log )
 
-            ( sleep $MAX_CALL_TIME_VALUE; echo h; sleep 0.5; echo q ) | ( pjsua --app-log-level=3 --config-file '/share/dss_voip/dss_pjsua.conf' $CALL_SIP_URI_VALUE 2> /share/dss_voip/dss_pjsua.log) 
             if [ $? -eq 0 ]; then
                bashio::log.green "[Info] Call ended..."
             else
