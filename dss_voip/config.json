@@ -1,8 +1,8 @@
 {
-  "name": "DSS VoIP Notifier",
+  "name": "DSS VoIP Notifier (Modded by Jr)",
   "version": "3.1.5",
   "slug": "dss_voip",
-  "url": "https://github.com/sdesalve/hassio-addons/tree/master/dss_voip",
+  "url": "https://github.com/jr_wyx/hassio-addons/tree/master/dss_voip",
   "description": "VoIP Notifier for HomeAssistant",
   "arch": [
      "aarch64",
